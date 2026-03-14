@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NEKODORO.ShopPage"
+             xmlns:res="clr-namespace:NEKODORO.Resources"
+             Title="NekoMarket"
+             BackgroundColor="#FFF9E7">
+
+    <Grid RowDefinitions="Auto, *">
+        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" Padding="20" Spacing="5">
+            <Image Source="coin_icon.png" WidthRequest="20" HeightRequest="20"/>
+            <Label x:Name="CurrentCoinLabel" Text="0" FontAttributes="Bold" FontSize="18" TextColor="#7fa7b0"/>
+        </HorizontalStackLayout>
+
+        <CollectionView Grid.Row="1" x:Name="ShopItemsList" Margin="10">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border StrokeShape="RoundRectangle 15" Padding="10" BackgroundColor="White">
+                        <Border.Shadow>
+                            <Shadow Brush="Black" Offset="2,2" Radius="5" Opacity="0.1" />
+                        </Border.Shadow>
+
+                        <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                            <Image Source="{Binding Image}" 
+                                   IsAnimationPlaying="True" 
+                                   HeightRequest="80" 
+                                   WidthRequest="80"/>
+
+                            <Label Text="{Binding Name}" 
+                                   FontAttributes="Bold" 
+                                   HorizontalOptions="Center"/>
+
+                            <Button Text="{Binding Price, StringFormat='{0} Coin'}" 
+                                    Clicked="OnBuyClicked"
+                                    BackgroundColor="#a2b9bd" 
+                                    TextColor="#eff3e5"
+                                    CornerRadius="10"
+                                    CommandParameter="{Binding .}"/>
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

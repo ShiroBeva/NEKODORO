@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:NEKODORO.Resources"
+             x:Class="NEKODORO.MainPage"
+             Shell.NavBarIsVisible="false"
+             BackgroundColor="White" 
+             Padding="0">
+    <Grid IgnoreSafeArea="True">
+        <Image Source="nature.png" 
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill" />
+
+        <ScrollView>
+            <VerticalStackLayout Padding="20,70,20,20" VerticalOptions="Center" Spacing="25">
+
+                <Button x:Name="ProfileBtn"
+                        Text="{x:Static res:AppResources.MainProfileBtn}" 
+                        BackgroundColor="DarkSlateGray" 
+                        TextColor="White" 
+                        CornerRadius="15" 
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        Clicked="OnProfileClicked" />
+
+                <Label Text="DEVELOPER: SHIRO BV" 
+                       TextColor="LightSeaGreen" 
+                       FontAttributes="Italic" 
+                       HorizontalOptions="Center"/>
+
+                <Label Text="NEKODORO" 
+                       FontSize="48" 
+                       FontAttributes="Bold" 
+                       TextColor="DarkSeaGreen" 
+                       HorizontalOptions="Center">
+                    <Label.Shadow>
+                        <Shadow Brush="Black" Offset="2,2" Radius="3" Opacity="0.2" />
+                    </Label.Shadow>
+                </Label>
+
+                <Button Text="{x:Static res:AppResources.MainGoInBtn}" 
+                        BackgroundColor="DarkSlateGray" 
+                        TextColor="White" 
+                        CornerRadius="25" 
+                        HeightRequest="60"
+                        HorizontalOptions="Center"
+                        Clicked="Button_Click1" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <ContentView x:Name="ProfilePopup" IsVisible="False" BackgroundColor="#80000000">
+            <Border BackgroundColor="#d3e9ef" StrokeShape="RoundRectangle 40" VerticalOptions="Center" HorizontalOptions="Center" WidthRequest="320" Padding="25">
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{x:Static res:AppResources.PopupTitle}" TextColor="#82bdbc" FontAttributes="Bold" FontSize="18" HorizontalOptions="Center" />
+
+                    <Border StrokeShape="RoundRectangle 60" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" StrokeThickness="4" Stroke="#b4dce7">
+                        <Image x:Name="ProfileImg" Source="wrabbit1.png" Aspect="AspectFill">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnSelectImageClicked" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Border>
+
+                    <Entry x:Name="ProfileNameEntry" 
+                           Placeholder="{x:Static res:AppResources.NamePlaceholder}" 
+                           TextColor="Black" 
+                           PlaceholderColor="Gray"
+                           HorizontalTextAlignment="Center" 
+                           BackgroundColor="#F0F0F0" />
+
+                    <Button Text="{x:Static res:AppResources.SaveBtn}" BackgroundColor="#b4dce7" TextColor="White" FontAttributes="Bold" Clicked="OnSaveProfileClicked" />
+                    <Button Text="{x:Static res:AppResources.CloseBtn}" TextColor="Gray" BackgroundColor="Transparent" Clicked="OnClosePopupClicked" />
+                </VerticalStackLayout>
+            </Border>
+        </ContentView>
+    </Grid>
+</ContentPage>

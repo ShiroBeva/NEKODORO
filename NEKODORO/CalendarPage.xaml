@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NEKODORO.CalendarPage"
+             Title="Çalışma Günlüğü"
+             BackgroundColor="#c1d7d4">
+
+    <Grid RowDefinitions="Auto, *">
+        <Label Grid.Row="0" Text="Geçmiş Başarıların" 
+               FontSize="24" FontAttributes="Bold" 
+               HorizontalOptions="Center" Margin="20" TextColor="#2C3E50"/>
+
+        <CollectionView Grid.Row="1" x:Name="SessionsList" Margin="10">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="15" CornerRadius="10" HasShadow="True">
+                        <HorizontalStackLayout Spacing="20">
+                            <VerticalStackLayout WidthRequest="80">
+                                <Label Text="{Binding Date, StringFormat='{0:dd MMM}'}" FontAttributes="Bold" FontSize="16"/>
+                                <Label Text="{Binding Date, StringFormat='{0:HH:mm}'}" FontSize="12" TextColor="Gray"/>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="{Binding MinutesWorked, StringFormat='{0} Dakika Odaklanma'}" TextColor="#27AE60" FontAttributes="Bold"/>
+                                <Label Text="{Binding CoinsEarned, StringFormat='+{0} Coin Kazandın'}" FontSize="13" TextColor="#F39C12"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

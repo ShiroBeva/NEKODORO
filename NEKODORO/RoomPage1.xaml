@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:res="clr-namespace:NEKODORO.Resources"
+             x:Class="NEKODORO.RoomPage1"
+             BackgroundColor="Black"
+             Shell.NavBarIsVisible="False"
+             Padding="0">
+
+    <AbsoluteLayout HorizontalOptions="Fill" VerticalOptions="Fill">
+
+        <Image Source="garden.png" 
+               Aspect="AspectFill"
+               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All"
+               Margin="0,-50,0,0"
+               ZIndex="0" />
+
+        <AbsoluteLayout x:Name="DecorationArea"
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        ZIndex="1">
+            <Image Source="bunny_idle.gif" 
+                   IsAnimationPlaying="True"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.5, 220, 220" 
+                   AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </AbsoluteLayout>
+
+        <Grid ColumnDefinitions="*, Auto" 
+              Padding="15,10,15,0" 
+              AbsoluteLayout.LayoutBounds="0, 0, 1, 110"
+              AbsoluteLayout.LayoutFlags="WidthProportional"
+              ZIndex="10">
+
+            <HorizontalStackLayout Spacing="10" VerticalOptions="Start">
+                <Border StrokeShape="RoundRectangle 25" HeightRequest="50" WidthRequest="50">
+                    <Image x:Name="RoomProfileImg" Aspect="AspectFill" />
+                </Border>
+                <VerticalStackLayout VerticalOptions="Center">
+                    <Label x:Name="RoomUserNameLabel" FontAttributes="Bold" TextColor="White" Shadow="{Shadow Brush=Black, Offset='1,1', Radius=2}" />
+                    <HorizontalStackLayout Spacing="5">
+                        <Image Source="coin_icon.png" WidthRequest="15" HeightRequest="15" />
+                        <Label x:Name="CoinLabel" Text="0" TextColor="Goldenrod" FontAttributes="Bold" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <Button Grid.Column="1" 
+                    Text="X" 
+                    Clicked="OnBackClicked" 
+                    WidthRequest="40" 
+                    HeightRequest="40" 
+                    BackgroundColor="#80000000" 
+                    CornerRadius="20" 
+                    VerticalOptions="Start" 
+                    Margin="0,5,0,0"/>
+        </Grid>
+
+        <Grid ColumnDefinitions="*,*,*,*,*" 
+              BackgroundColor="#AA000000" 
+              Padding="5" 
+              HeightRequest="80"
+              AbsoluteLayout.LayoutBounds="0, 1, 1, 80"
+              AbsoluteLayout.LayoutFlags="WidthProportional, YProportional"
+              ZIndex="20">
+            <Button Grid.Column="0" Text="Market" Clicked="OnShopClicked" BackgroundColor="Transparent" FontSize="11" TextColor="White"/>
+            <Button Grid.Column="1" Text="Decor" Clicked="OnDecorateClicked" BackgroundColor="Transparent" FontSize="11" TextColor="White"/>
+            <Button Grid.Column="2" Text="Odaklan" Clicked="OnPomoClicked" BackgroundColor="#889d98" CornerRadius="10" FontAttributes="Bold" />
+            <Button Grid.Column="3" Text="Takvim" Clicked="OnCalendarClicked" BackgroundColor="Transparent" FontSize="10" TextColor="White"/>
+            <Button Grid.Column="4" Text="Ayarlar" Clicked="OnSettingsClicked" BackgroundColor="Transparent" FontSize="10" TextColor="White"/>
+        </Grid>
+
+        <Border x:Name="StorageBar"
+        IsVisible="False"
+        BackgroundColor="#c1d7d4" 
+        Opacity="0.55"
+        HeightRequest="130"
+        WidthRequest="450"
+        AbsoluteLayout.LayoutBounds="0.5, 0.70, AutoSize, AutoSize" 
+        AbsoluteLayout.LayoutFlags="PositionProportional"
+        ZIndex="999" 
+        StrokeShape="RoundRectangle 25">
+            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always">
+                <HorizontalStackLayout x:Name="StorageItemsContainer" 
+                               Padding="20" 
+                               Spacing="20" 
+                               VerticalOptions="Center"
+                               HeightRequest="100"
+                               MinimumWidthRequest="200" />
+            </ScrollView>
+        </Border>
+
+        <Button x:Name="RemoveItemBtn"
+                Text="X"
+                IsVisible="False"
+                Clicked="OnRemoveItemClicked"
+                AbsoluteLayout.LayoutBounds="0.95, 0.2, 40, 40" 
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="#899590" 
+                CornerRadius="20" 
+                ZIndex="60"/>
+
+    </AbsoluteLayout>
+</ContentPage>
